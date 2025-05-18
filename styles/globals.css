@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black text-white;
+  }
+
+  /* Typography customizations from typography.css */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+
+  h1 {
+    @apply text-6xl sm:text-8xl;
+  }
+
+  h2 {
+    @apply text-4xl sm:text-6xl;
+  }
+
+  h3 {
+    @apply text-3xl;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply rounded-xl bg-white px-4 py-2 font-medium text-black hover:scale-[1.03] transition;
+  }
+
+  .btn-ghost {
+    @apply rounded-xl border border-white/20 px-4 py-2 text-white hover:bg-white/10;
+  }
+} 

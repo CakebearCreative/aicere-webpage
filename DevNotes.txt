@@ -1,0 +1,6 @@
+
+Frontend & Backend info:
+Full-stack application with a free start:
+Frontend & API Routes Hosting: Netlify (free tier)
+[... Vercel does NOT support Commercial on Hobby tier. Need to use Netlify instead - they support it.]
+Backend, Database & Authentication: Supabase (free tier)

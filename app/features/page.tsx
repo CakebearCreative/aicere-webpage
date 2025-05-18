@@ -12,42 +12,48 @@ export default function FeaturesPage() {
     {
       id: 'aigent',
       name: 'Aigent',
-      description: 'AI-powered code completion and assistance',
+      description: 'An agentic node-based development program for developers, combining visual workflows with AI-powered automation.',
       features: [
-        'Smart code completion',
-        'Refactoring suggestions',
-        'Bug detection',
-        'Documentation generation',
-        'Test case generation',
-        'Supports 20+ programming languages',
+        'Node-based agent design system',
+        'Visual workflow creation',
+        'Code support and execution',
+        'Local model and RAG integration',
+        'Agent automation and scheduling',
+        'Plugin system and extensibility',
+        'Developer-centric UX',
+        'Privacy-focused local-first approach',
       ],
       imageUrl: '/screens/aigent-vscode.png',
     },
     {
       id: 'aimage',
       name: 'Aimage',
-      description: 'Generate images with AI',
+      description: 'An AI Image editor with ComfyUI features similar to Photoshop, but less expensive.',
       features: [
-        'Text to image generation',
-        'Image editing capabilities',
-        'Style transfer',
-        'Custom art styles',
-        'High resolution output',
-        'Commercial usage rights',
+        'Advanced AI image generation',
+        'ComfyUI integration with intuitive interface',
+        'Professional editing tools',
+        'One-click image enhancements',
+        'High-resolution outputs',
+        'Affordable alternative to Photoshop',
+        'Local image processing capabilities',
+        'Extensive style and model options',
       ],
       imageUrl: '/screens/aimage-ui.png',
     },
     {
       id: 'aibot',
       name: 'Aibot',
-      description: 'Your AI chatbot assistant',
+      description: 'A no-code, embeddable AI assistant that works with websites and local folders, offering both online and offline modes.',
       features: [
-        'Natural language understanding',
-        'Code explanation',
-        'Problem solving',
-        'Knowledge base integration',
-        'Custom workflows',
-        'API access',
+        'Easy website integration (single line of code)',
+        'Content-grounded responses from your data',
+        'Privacy-first design for sensitive documents',
+        'Online/offline flexibility',
+        'Lightweight (<100kB) web widget',
+        'Training on your knowledge base and FAQs',
+        'Local file and folder indexing',
+        '24/7 virtual customer support',
       ],
       imageUrl: '/screens/aibot-chat.png',
     },
@@ -69,7 +75,7 @@ export default function FeaturesPage() {
         >
           <h1 className="text-5xl font-extrabold sm:text-6xl">Features</h1>
           <p className="mt-6 mx-auto max-w-2xl text-xl text-white/80">
-            Compare our suite of AI tools designed to boost your productivity
+            Explore our suite of AI tools designed to boost your productivity
           </p>
         </motion.div>
 
@@ -139,6 +145,79 @@ export default function FeaturesPage() {
             </div>
           </motion.div>
         </div>
+        
+        {/* Comparison Table */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mt-32"
+        >
+          <h2 className="text-3xl font-bold text-center mb-12">Product Comparison</h2>
+          
+          <div className="overflow-x-auto">
+            <table className="w-full bg-black/20 backdrop-blur-sm rounded-2xl overflow-hidden">
+              <thead>
+                <tr className="border-b border-white/10">
+                  <th className="p-4 text-left">Feature</th>
+                  <th className="p-4 text-center">Aigent</th>
+                  <th className="p-4 text-center">Aimage</th>
+                  <th className="p-4 text-center">Aibot</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-white/10">
+                  <td className="p-4">Local-first approach</td>
+                  <td className="p-4 text-center text-green-500">✓</td>
+                  <td className="p-4 text-center text-green-500">✓</td>
+                  <td className="p-4 text-center text-green-500">✓</td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="p-4">AI-powered assistance</td>
+                  <td className="p-4 text-center text-green-500">✓</td>
+                  <td className="p-4 text-center text-green-500">✓</td>
+                  <td className="p-4 text-center text-green-500">✓</td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="p-4">Code development focus</td>
+                  <td className="p-4 text-center text-green-500">✓</td>
+                  <td className="p-4 text-center text-red-500">✗</td>
+                  <td className="p-4 text-center text-red-500">✗</td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="p-4">Image generation/editing</td>
+                  <td className="p-4 text-center text-red-500">✗</td>
+                  <td className="p-4 text-center text-green-500">✓</td>
+                  <td className="p-4 text-center text-red-500">✗</td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="p-4">Website integration</td>
+                  <td className="p-4 text-center text-red-500">✗</td>
+                  <td className="p-4 text-center text-red-500">✗</td>
+                  <td className="p-4 text-center text-green-500">✓</td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="p-4">Automation capabilities</td>
+                  <td className="p-4 text-center text-green-500">✓</td>
+                  <td className="p-4 text-center text-yellow-500">~</td>
+                  <td className="p-4 text-center text-green-500">✓</td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="p-4">No-code friendly</td>
+                  <td className="p-4 text-center text-yellow-500">~</td>
+                  <td className="p-4 text-center text-green-500">✓</td>
+                  <td className="p-4 text-center text-green-500">✓</td>
+                </tr>
+                <tr>
+                  <td className="p-4">Offline capabilities</td>
+                  <td className="p-4 text-center text-green-500">✓</td>
+                  <td className="p-4 text-center text-green-500">✓</td>
+                  <td className="p-4 text-center text-green-500">✓</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </motion.div>
       </div>
     </div>
   );

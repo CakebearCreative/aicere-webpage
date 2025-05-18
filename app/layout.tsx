@@ -10,6 +10,7 @@ const inter = Inter({
 });
 
 export const metadata = {
+  metadataBase: new URL('https://aicere.com'), // Replace with your actual domain in production
   title: 'Aicere - The AI Suite',
   description: 'Built to make you extraordinarily productive, Aicere is the fastest way to ship with AI.',
 };

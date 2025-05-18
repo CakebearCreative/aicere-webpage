@@ -2,43 +2,154 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Check } from 'lucide-react';
+import { Check, Code, ImageIcon, MessageSquare } from 'lucide-react';
+
+type ProductId = 'all' | 'aigent' | 'aimage' | 'aibot';
+
+interface Product {
+  name: string;
+  icon: JSX.Element;
+}
+
+interface PlanBenefits {
+  all: string[];
+  aigent: string[];
+  aimage: string[];
+  aibot: string[];
+}
+
+interface Plan {
+  name: string;
+  price: number;
+  benefits: PlanBenefits;
+  tag?: string;
+  featured?: boolean;
+}
 
 export default function PricingPage() {
   const [yearly, setYearly] = useState(false);
+  const [activeProduct, setActiveProduct] = useState<ProductId>('all');
 
-  const plans = [
+  const products: Record<ProductId, Product> = {
+    all: {
+      name: 'All Products',
+      icon: <div className="flex space-x-1">
+        <Code className="h-5 w-5 text-purple-400" />
+        <ImageIcon className="h-5 w-5 text-blue-400" />
+        <MessageSquare className="h-5 w-5 text-pink-400" />
+      </div>
+    },
+    aigent: {
+      name: 'Aigent',
+      icon: <Code className="h-5 w-5 text-purple-400" />
+    },
+    aimage: {
+      name: 'Aimage',
+      icon: <ImageIcon className="h-5 w-5 text-blue-400" />
+    },
+    aibot: {
+      name: 'Aibot',
+      icon: <MessageSquare className="h-5 w-5 text-pink-400" />
+    }
+  };
+
+  const plans: Plan[] = [
     { 
       name: 'Hobby',
       price: 0,
-      benefits: [
-        'Pro two-week trial',
-        '2000 completions',
-        '50 slow requests'
-      ]
+      benefits: {
+        all: [
+          'Basic features for all products',
+          'Limited AI requests',
+          'Community support',
+          'Standard models only'
+        ],
+        aigent: [
+          'Basic node workflows',
+          'Limited to 3 agents per project',
+          'Standard models only',
+          'Community support'
+        ],
+        aimage: [
+          'Basic image generation',
+          'Limited to 100 images/month',
+          'Standard resolution only',
+          'Community support'
+        ],
+        aibot: [
+          'Basic chat implementation',
+          'Limited to 500 queries/month',
+          'Single website integration',
+          'Community support'
+        ]
+      }
     },
     { 
       name: 'Pro',
-      price: yearly ? 192 : 20, // 20% discount on yearly
+      price: yearly ? 189 : 19.99,
       tag: yearly ? '/year' : '/month',
-      benefits: [
-        'Unlimited completions',
-        '500 requests per month',
-        'Unlimited slow requests',
-        'Max mode'
-      ],
+      benefits: {
+        all: [
+          'Access to all Pro features',
+          'Unlimited AI requests',
+          'Priority support',
+          'Advanced AI models'
+        ],
+        aigent: [
+          'Unlimited node workflows',
+          'Advanced agent capabilities',
+          'Local model integration',
+          'Priority support'
+        ],
+        aimage: [
+          'Advanced generation options',
+          'Unlimited images',
+          'High-resolution outputs',
+          'Priority support'
+        ],
+        aibot: [
+          'Unlimited chat queries',
+          'Up to 3 website integrations',
+          'Custom branding options',
+          'Priority support'
+        ]
+      },
       featured: true
     },
     { 
       name: 'Business',
-      price: yearly ? 384 : 40, // 20% discount on yearly
+      price: yearly ? 479 : 49.99,
       tag: yearly ? '/user/year' : '/user/month',
-      benefits: [
-        'Enforce privacy mode org-wide',
-        'Centralized team billing',
-        'Admin dashboard with usage stats',
-        'SAML/OIDC SSO'
-      ]
+      benefits: {
+        all: [
+          'All Pro features',
+          'Team collaboration tools',
+          'Admin dashboard with usage stats',
+          'Dedicated support',
+          'SAML/OIDC SSO'
+        ],
+        aigent: [
+          'Team collaboration on workflows',
+          'Enterprise-grade security',
+          'Workflow version control',
+          'Dedicated support',
+          'SAML/OIDC SSO'
+        ],
+        aimage: [
+          'Team asset library sharing',
+          'Brand kit and style presets',
+          'Commercial usage rights',
+          'Dedicated support',
+          'SAML/OIDC SSO'
+        ],
+        aibot: [
+          'Unlimited website integrations',
+          'Team knowledge base management',
+          'Advanced analytics dashboard',
+          'Dedicated support',
+          'SAML/OIDC SSO'
+        ]
+      }
     }
   ];
 
@@ -65,8 +176,26 @@ export default function PricingPage() {
           Choose the plan that works for you
         </motion.p>
 
+        {/* Product selector */}
+        <div className="mt-10 flex justify-center">
+          <div className="relative flex items-center rounded-full p-1 bg-black/20 backdrop-blur-sm">
+            {Object.entries(products).map(([id, product]) => (
+              <button
+                key={id}
+                onClick={() => setActiveProduct(id as ProductId)}
+                className={`relative flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium ${
+                  activeProduct === id ? 'bg-white text-black' : 'text-white'
+                } transition-all duration-300`}
+              >
+                {product.icon}
+                <span className="hidden sm:inline">{product.name}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Billing toggle */}
-        <div className="mt-12 flex justify-center">
+        <div className="mt-6 flex justify-center">
           <div className="relative flex items-center rounded-full p-1 bg-black/20 backdrop-blur-sm">
             <button
               onClick={() => setYearly(false)}
@@ -121,7 +250,7 @@ export default function PricingPage() {
               <p className="mt-6 text-lg font-semibold">Includes</p>
               
               <ul className="mt-4 space-y-3 text-left">
-                {plan.benefits.map((benefit) => (
+                {plan.benefits[activeProduct].map((benefit: string) => (
                   <li key={benefit} className="flex items-start">
                     <Check className="mr-2 h-5 w-5 shrink-0 text-green-500" />
                     <span>{benefit}</span>
@@ -147,7 +276,7 @@ export default function PricingPage() {
         {/* Enterprise CTA */}
         <div className="mt-20 text-center">
           <p className="text-xl">
-            Questions about enterprise security, procurement, or custom contracts?{' '}
+            Need a custom solution for your organization?{' '}
             <Link href="/contact" className="font-medium underline">
               Contact Sales →
             </Link>

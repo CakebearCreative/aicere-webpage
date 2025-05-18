@@ -10,12 +10,12 @@ export default function Hero() {
       <div className="absolute inset-0 -z-10 bg-gradient-conic from-purple-600 via-pink-500 to-green-500 opacity-70"></div>
       
       <motion.h1 
-        className="mx-auto max-w-4xl text-6xl font-extrabold tracking-tight sm:text-8xl"
+        className="mx-auto max-w-4xl text-6xl font-extrabold tracking-tight sm:text-6xl"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        The AI Suite<br />That Codes, Designs & Talks
+        AI-Powered Productivity
       </motion.h1>
       
       <motion.p 
@@ -24,7 +24,7 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        Built to make you extraordinarily productive, Aicere is the fastest way to ship with AI.
+        Aicere is a Swedish AI company providing powerful Software as a Service solutions that respect your privacy with local-first processing.
       </motion.p>
       
       <motion.div 
@@ -34,7 +34,7 @@ export default function Hero() {
         transition={{ duration: 0.8, delay: 0.4 }}
       >
         <Link href="/download" className="btn-primary">Download for Windows</Link>
-        <Link href="/download" className="btn-ghost">All Downloads</Link>
+        <Link href="/features" className="btn-ghost">Explore Products</Link>
       </motion.div>
 
       {/* hero code window */}
@@ -46,7 +46,7 @@ export default function Hero() {
       >
         <Image 
           src="/screens/hero-code.png"
-          alt="Code with AI suggestions"
+          alt="Aicere AI Suite featuring Aigent, Aimage, and Aibot"
           width={1200}
           height={700}
           className="rounded-2xl shadow-2xl ring-1 ring-white/10"

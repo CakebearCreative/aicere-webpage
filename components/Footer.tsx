@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
-import LogoCube from './LogoCube';
+// import LogoCube from './LogoCube';
+import Image from 'next/image';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -46,7 +47,7 @@ export default function Footer() {
           {/* Logo and copyright */}
           <div className="mb-10 md:mb-0">
             <Link href="/" className="flex items-center gap-2">
-              <LogoCube />
+              <Image src='/logo.png' alt='Aicere Logo' width={24} height={24} className="h-6 w-6" />
               <span className="font-bold">Aicere</span>
             </Link>
             <p className="mt-4 text-sm text-white/60">

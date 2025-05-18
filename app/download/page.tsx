@@ -1,40 +1,162 @@
 'use client';
+import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Download, MonitorPlay, Apple, Terminal } from 'lucide-react';
+import { Download, MonitorPlay, Apple, Terminal, Code, ImageIcon, MessageSquare } from 'lucide-react';
 // Download, Windows, Apple, Linux
 
+type ProductId = 'all' | 'aigent' | 'aimage' | 'aibot';
+
+interface ProductType {
+  id: ProductId;
+  name: string;
+  icon: JSX.Element;
+}
+
+interface VersionType {
+  name: string;
+  size: string;
+  url: string;
+}
+
+interface PlatformType {
+  platform: string;
+  icon: JSX.Element;
+  versions: VersionType[];
+}
+
+type DownloadsType = {
+  [key in ProductId]: PlatformType[];
+};
+
 export default function DownloadPage() {
-  const downloads = [
-    {
-      platform: 'Windows',
-      icon: <MonitorPlay className="h-7 w-7" />,
-      versions: [
-        { name: 'Windows Installer (x64)', size: '145 MB', url: '/downloads/aicere-1.0.0-win-x64.exe' },
-        { name: 'Windows Portable (x64)', size: '142 MB', url: '/downloads/aicere-1.0.0-win-x64.zip' },
-      ],
-    },
-    {
-      platform: 'macOS',
-      icon: <Apple className="h-7 w-7" />,
-      versions: [
-        { name: 'macOS Intel', size: '158 MB', url: '/downloads/aicere-1.0.0-macos-x64.dmg' },
-        { name: 'macOS Apple Silicon', size: '152 MB', url: '/downloads/aicere-1.0.0-macos-arm64.dmg' },
-      ],
-    },
-    {
-      platform: 'Linux',
-      icon: <Terminal className="h-7 w-7" />,
-      versions: [
-        { name: 'Linux AppImage (x64)', size: '135 MB', url: '/downloads/aicere-1.0.0-linux-x64.AppImage' },
-        { name: 'Linux .deb (x64)', size: '138 MB', url: '/downloads/aicere-1.0.0-linux-x64.deb' },
-        { name: 'Linux .rpm (x64)', size: '137 MB', url: '/downloads/aicere-1.0.0-linux-x64.rpm' },
-      ],
-    },
+  const [activeProduct, setActiveProduct] = useState<ProductId>('all');
+  
+  const products: ProductType[] = [
+    { id: 'all', name: 'Aicere Suite', icon: <Download className="h-6 w-6" /> },
+    { id: 'aigent', name: 'Aigent', icon: <Code className="h-6 w-6" /> },
+    { id: 'aimage', name: 'Aimage', icon: <ImageIcon className="h-6 w-6" /> },
+    { id: 'aibot', name: 'Aibot', icon: <MessageSquare className="h-6 w-6" /> },
   ];
 
+  const downloads: DownloadsType = {
+    all: [
+      {
+        platform: 'Windows',
+        icon: <MonitorPlay className="h-7 w-7" />,
+        versions: [
+          { name: 'Windows Installer (x64)', size: '145 MB', url: '/downloads/aicere-1.0.0-win-x64.exe' },
+          { name: 'Windows Portable (x64)', size: '142 MB', url: '/downloads/aicere-1.0.0-win-x64.zip' },
+        ],
+      },
+      {
+        platform: 'macOS',
+        icon: <Apple className="h-7 w-7" />,
+        versions: [
+          { name: 'macOS Intel', size: '158 MB', url: '/downloads/aicere-1.0.0-macos-x64.dmg' },
+          { name: 'macOS Apple Silicon', size: '152 MB', url: '/downloads/aicere-1.0.0-macos-arm64.dmg' },
+        ],
+      },
+      {
+        platform: 'Linux',
+        icon: <Terminal className="h-7 w-7" />,
+        versions: [
+          { name: 'Linux AppImage (x64)', size: '135 MB', url: '/downloads/aicere-1.0.0-linux-x64.AppImage' },
+          { name: 'Linux .deb (x64)', size: '138 MB', url: '/downloads/aicere-1.0.0-linux-x64.deb' },
+          { name: 'Linux .rpm (x64)', size: '137 MB', url: '/downloads/aicere-1.0.0-linux-x64.rpm' },
+        ],
+      },
+    ],
+    aigent: [
+      {
+        platform: 'Windows',
+        icon: <MonitorPlay className="h-7 w-7" />,
+        versions: [
+          { name: 'Windows Installer (x64)', size: '95 MB', url: '/downloads/aigent-1.0.0-win-x64.exe' },
+          { name: 'Windows Portable (x64)', size: '92 MB', url: '/downloads/aigent-1.0.0-win-x64.zip' },
+        ],
+      },
+      {
+        platform: 'macOS',
+        icon: <Apple className="h-7 w-7" />,
+        versions: [
+          { name: 'macOS Intel', size: '103 MB', url: '/downloads/aigent-1.0.0-macos-x64.dmg' },
+          { name: 'macOS Apple Silicon', size: '98 MB', url: '/downloads/aigent-1.0.0-macos-arm64.dmg' },
+        ],
+      },
+      {
+        platform: 'Linux',
+        icon: <Terminal className="h-7 w-7" />,
+        versions: [
+          { name: 'Linux AppImage (x64)', size: '88 MB', url: '/downloads/aigent-1.0.0-linux-x64.AppImage' },
+          { name: 'Linux .deb (x64)', size: '90 MB', url: '/downloads/aigent-1.0.0-linux-x64.deb' },
+        ],
+      },
+    ],
+    aimage: [
+      {
+        platform: 'Windows',
+        icon: <MonitorPlay className="h-7 w-7" />,
+        versions: [
+          { name: 'Windows Installer (x64)', size: '110 MB', url: '/downloads/aimage-1.0.0-win-x64.exe' },
+          { name: 'Windows Portable (x64)', size: '108 MB', url: '/downloads/aimage-1.0.0-win-x64.zip' },
+        ],
+      },
+      {
+        platform: 'macOS',
+        icon: <Apple className="h-7 w-7" />,
+        versions: [
+          { name: 'macOS Intel', size: '115 MB', url: '/downloads/aimage-1.0.0-macos-x64.dmg' },
+          { name: 'macOS Apple Silicon', size: '112 MB', url: '/downloads/aimage-1.0.0-macos-arm64.dmg' },
+        ],
+      },
+      {
+        platform: 'Linux',
+        icon: <Terminal className="h-7 w-7" />,
+        versions: [
+          { name: 'Linux AppImage (x64)', size: '105 MB', url: '/downloads/aimage-1.0.0-linux-x64.AppImage' },
+          { name: 'Linux .deb (x64)', size: '107 MB', url: '/downloads/aimage-1.0.0-linux-x64.deb' },
+        ],
+      },
+    ],
+    aibot: [
+      {
+        platform: 'Windows',
+        icon: <MonitorPlay className="h-7 w-7" />,
+        versions: [
+          { name: 'Windows Installer (x64)', size: '65 MB', url: '/downloads/aibot-1.0.0-win-x64.exe' },
+          { name: 'Windows Portable (x64)', size: '62 MB', url: '/downloads/aibot-1.0.0-win-x64.zip' },
+        ],
+      },
+      {
+        platform: 'macOS',
+        icon: <Apple className="h-7 w-7" />,
+        versions: [
+          { name: 'macOS Intel', size: '68 MB', url: '/downloads/aibot-1.0.0-macos-x64.dmg' },
+          { name: 'macOS Apple Silicon', size: '64 MB', url: '/downloads/aibot-1.0.0-macos-arm64.dmg' },
+        ],
+      },
+      {
+        platform: 'Linux',
+        icon: <Terminal className="h-7 w-7" />,
+        versions: [
+          { name: 'Linux AppImage (x64)', size: '60 MB', url: '/downloads/aibot-1.0.0-linux-x64.AppImage' },
+          { name: 'Linux .deb (x64)', size: '62 MB', url: '/downloads/aibot-1.0.0-linux-x64.deb' },
+        ],
+      },
+      {
+        platform: 'Web Integration',
+        icon: <MessageSquare className="h-7 w-7" />,
+        versions: [
+          { name: 'Script Tag', size: '<100 KB', url: '/docs/aibot/integration' },
+          { name: 'Widget Bundle', size: '2.5 MB', url: '/downloads/aibot-widget-1.0.0.zip' },
+        ],
+      },
+    ],
+  };
+
   // Automatically detect platform
-  const detectPlatform = () => {
+  const detectPlatform = (): string => {
     if (typeof window !== 'undefined') {
       const platform = window.navigator.platform.toLowerCase();
       if (platform.includes('win')) return 'Windows';
@@ -42,6 +164,19 @@ export default function DownloadPage() {
       if (platform.includes('linux')) return 'Linux';
     }
     return 'Windows'; // Default fallback
+  };
+
+  // Get download URL for detected platform
+  const getMainDownloadUrl = (): string => {
+    const platform = detectPlatform();
+    const productDownloads = downloads[activeProduct];
+    const platformDownload = productDownloads.find(p => p.platform === platform);
+    
+    if (platformDownload && platformDownload.versions.length > 0) {
+      return platformDownload.versions[0].url;
+    }
+    
+    return '/downloads/aicere-1.0.0-win-x64.exe'; // Fallback
   };
 
   return (
@@ -57,9 +192,29 @@ export default function DownloadPage() {
           className="text-center"
         >
           <h1 className="text-5xl font-extrabold sm:text-6xl mb-6">Download Aicere</h1>
-          <p className="text-xl text-white/80 mb-12 max-w-2xl mx-auto">
-            Get started with the complete AI Suite for coding, designing, and interacting with AI.
+          <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+            Get started with our professional AI tools for development, design, and customer support.
           </p>
+          
+          {/* Product selector */}
+          <div className="mt-4 mb-8 flex justify-center">
+            <div className="relative flex flex-wrap items-center justify-center gap-2 md:gap-4">
+              {products.map((product) => (
+                <button
+                  key={product.id}
+                  onClick={() => setActiveProduct(product.id)}
+                  className={`flex items-center gap-2 rounded-xl px-4 py-2 ${
+                    activeProduct === product.id
+                      ? 'bg-white text-black'
+                      : 'bg-black/20 text-white hover:bg-black/30'
+                  } transition-all`}
+                >
+                  {product.icon}
+                  <span>{product.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
         </motion.div>
 
         {/* Current platform download button */}
@@ -70,7 +225,7 @@ export default function DownloadPage() {
           className="mb-16 text-center"
         >
           <Link 
-            href={`/downloads/aicere-1.0.0-win-x64.exe`} 
+            href={getMainDownloadUrl()} 
             className="inline-flex items-center justify-center gap-2 bg-white hover:bg-white/90 text-black px-8 py-4 rounded-xl font-medium text-lg transition-all hover:scale-[1.02]"
           >
             <Download className="h-5 w-5" />
@@ -88,7 +243,7 @@ export default function DownloadPage() {
           <h2 className="text-2xl font-bold mb-6">All Downloads</h2>
           
           <div className="space-y-8">
-            {downloads.map((platform) => (
+            {downloads[activeProduct].map((platform: PlatformType) => (
               <div key={platform.platform} className="bg-black/30 backdrop-blur-sm rounded-2xl p-6 ring-1 ring-white/10">
                 <div className="flex items-center gap-3 mb-4">
                   {platform.icon}
@@ -96,7 +251,7 @@ export default function DownloadPage() {
                 </div>
                 
                 <div className="space-y-3">
-                  {platform.versions.map((version) => (
+                  {platform.versions.map((version: VersionType) => (
                     <div 
                       key={version.name} 
                       className="flex items-center justify-between p-3 bg-black/20 rounded-xl hover:bg-black/30 transition-colors"
@@ -152,7 +307,7 @@ export default function DownloadPage() {
                   <ul className="space-y-2 text-white/80">
                     <li>Broadband internet connection</li>
                     <li>Some features require an Aicere account</li>
-                    <li>API access may require paid subscription</li>
+                    <li>Advanced AI models require subscription</li>
                   </ul>
                 </div>
               </div>

@@ -3,11 +3,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 // import LogoCube from './LogoCube';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, UserCircle } from 'lucide-react';
+import { useAuth } from '@/lib/auth-context';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
+  const router = useRouter();
 
   const navLinks = [
     { name: 'Pricing', href: '/pricing' },
@@ -29,6 +33,18 @@ export default function Navbar() {
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+    setMobileMenuOpen(false);
+    window.location.href = '/';
+  };
+
+  const handleDashboardClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    console.log('Navbar: Dashboard clicked, navigating...');
+    window.location.href = '/dashboard';
   };
 
   return (
@@ -53,8 +69,20 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <Link href="/signin" className="btn-ghost">Sign in</Link>
-          <Link href="/download" className="btn-primary">Download</Link>
+          {user ? (
+            <div className="flex items-center gap-3">
+              <a href="/dashboard" className="flex items-center gap-2 hover:text-white/80 transition-colors cursor-pointer" onClick={handleDashboardClick}>
+                <UserCircle size={18} />
+                <span className="text-sm">Dashboard</span>
+              </a>
+              <button onClick={handleSignOut} className="btn-ghost">Sign out</button>
+            </div>
+          ) : (
+            <>
+              <Link href="/signin" className="btn-ghost">Sign in</Link>
+              <Link href="/download" className="btn-primary">Download</Link>
+            </>
+          )}
         </div>
 
         <div className="md:hidden">
@@ -79,12 +107,37 @@ export default function Navbar() {
             ))}
           </nav>
           <div className="mt-10 flex flex-col items-center gap-4 border-t border-white/10 pt-8">
-            <Link href="/signin" className="btn-ghost w-full max-w-xs text-center" onClick={toggleMobileMenu}>
-              Sign in
-            </Link>
-            <Link href="/download" className="btn-primary w-full max-w-xs text-center" onClick={toggleMobileMenu}>
-              Download
-            </Link>
+            {user ? (
+              <>
+                <a 
+                  href="/dashboard" 
+                  className="btn-ghost w-full max-w-xs text-center flex justify-center items-center gap-2 cursor-pointer" 
+                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                    e.preventDefault();
+                    setMobileMenuOpen(false);
+                    window.location.href = '/dashboard';
+                  }}
+                >
+                  <UserCircle size={18} />
+                  <span>Dashboard</span>
+                </a>
+                <button 
+                  onClick={handleSignOut} 
+                  className="btn-primary w-full max-w-xs text-center"
+                >
+                  Sign out
+                </button>
+              </>
+            ) : (
+              <>
+                <Link href="/signin" className="btn-ghost w-full max-w-xs text-center" onClick={toggleMobileMenu}>
+                  Sign in
+                </Link>
+                <Link href="/download" className="btn-primary w-full max-w-xs text-center" onClick={toggleMobileMenu}>
+                  Download
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}

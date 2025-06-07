@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 export default function VerifyEmailPage() {
   return (
     <div className="relative min-h-screen pt-32 pb-20">
-      <div className="absolute inset-0 -z-10 bg-gradient-conic from-purple-600 via-pink-500 to-green-500 opacity-30"></div>
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-purple-600 via-pink-500 to-green-500 opacity-30"></div>
       <div className="mx-auto max-w-4xl px-6 text-center">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

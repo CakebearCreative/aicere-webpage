@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 export default function AboutPage() {
   return (
     <div className="relative min-h-screen pt-32 pb-20">
-      <div className="absolute inset-0 -z-10 bg-gradient-conic from-purple-600 via-pink-500 to-green-500 opacity-30"></div>
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-purple-600 via-pink-500 to-green-500 opacity-30"></div>
       <div className="mx-auto max-w-4xl px-6 text-center">
         <motion.h1 
           className="text-5xl font-extrabold sm:text-6xl"
@@ -36,12 +36,24 @@ export default function AboutPage() {
           <p className="text-lg text-white/70 mb-4">
             At Aicere, we prioritize a local-first approach, ensuring that your data remains secure and under your control whenever possible. We are committed to developing AI solutions that are not only cutting-edge but also ethical and transparent.
           </p>
-          <h2 className="text-3xl font-bold mb-6 mt-10 text-center">Our Products</h2>
-          <ul className="list-disc list-inside space-y-2 text-lg text-white/70">
-            <li><span className="font-semibold">Aigent:</span> An agentic node-based development program for developers.</li>
-            <li><span className="font-semibold">Aimage:</span> An AI Image editor with ComfyUI features similar to Photoshop, but less expensive.</li>
-            <li><span className="font-semibold">Aibot:</span> Offline/Online mode bot that incorporates with webpages or local folders.</li>
-          </ul>
+          <h2 className="text-3xl font-bold mb-6 mt-10 text-center">Our Product</h2>
+          <div className="bg-black/30 backdrop-blur-sm p-6 rounded-xl ring-1 ring-white/10 mb-6">
+            <h3 className="text-2xl font-semibold mb-4 text-center">Aicere Studio</h3>
+            <p className="text-lg text-white/70 mb-4">
+              A comprehensive AI-powered creative suite that combines the power of multiple AI technologies into one unified desktop application. Aicere Studio provides everything you need for AI-driven creativity and productivity.
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-lg text-white/70">
+              <li><span className="font-semibold">Agent Mode:</span> Visual workflow automation with drag-and-drop node-based interface for creating complex AI workflows.</li>
+              <li><span className="font-semibold">Image Mode:</span> AI image generation and professional editing tools with support for multiple AI models like Stable Diffusion and FLUX.</li>
+              <li><span className="font-semibold">Audio Mode:</span> AI audio generation for music, sound effects, and speech using providers like ElevenLabs and Suno AI.</li>
+              <li><span className="font-semibold">Integrated Chat:</span> Built-in LLM chat with RAG (Retrieval-Augmented Generation) for context-aware conversations.</li>
+              <li><span className="font-semibold">Model Management:</span> One-click installation and management of AI models from CivitAI and HuggingFace.</li>
+              <li><span className="font-semibold">Local & Cloud:</span> Supports both local models for privacy and cloud models for state-of-the-art performance.</li>
+            </ul>
+          </div>
+          <p className="text-center text-white/70">
+            <em>Coming soon: Video Mode and 3D Mode for complete multimedia AI creation.</em>
+          </p>
         </motion.div>
 
         <motion.div

@@ -6,7 +6,7 @@ import Link from 'next/link';
 export default function ForumPage() {
   return (
     <div className="relative min-h-screen pt-32 pb-20">
-      <div className="absolute inset-0 -z-10 bg-gradient-conic from-sky-500 via-cyan-500 to-teal-600 opacity-30"></div>
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-sky-500 via-cyan-500 to-teal-600 opacity-30"></div>
       <div className="mx-auto max-w-4xl px-6 text-center">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

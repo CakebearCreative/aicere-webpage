@@ -43,7 +43,7 @@ export default function DashboardPage() {
   if (isLoading || !pageReady) {
     return (
       <div className="relative min-h-screen pt-32 pb-20 flex items-center justify-center">
-        <div className="absolute inset-0 -z-10 bg-gradient-conic from-purple-600 via-pink-500 to-green-500 opacity-30"></div>
+        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-purple-600 via-pink-500 to-green-500 opacity-30"></div>
         <div className="flex flex-col items-center">
           <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple-500 mb-4"></div>
           <p className="text-white/70">Loading your dashboard...</p>
@@ -61,7 +61,7 @@ export default function DashboardPage() {
 
   return (
     <div className="relative min-h-screen pt-32 pb-20">
-      <div className="absolute inset-0 -z-10 bg-gradient-conic from-purple-600 via-pink-500 to-green-500 opacity-30"></div>
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-purple-600 via-pink-500 to-green-500 opacity-30"></div>
       <div className="mx-auto max-w-7xl px-6">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

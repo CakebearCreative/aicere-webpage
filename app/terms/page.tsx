@@ -6,7 +6,7 @@ export default function TermsPage() {
 
   return (
     <div className="relative min-h-screen pt-32 pb-20">
-      <div className="absolute inset-0 -z-10 bg-gradient-conic from-green-500 via-teal-500 to-blue-600 opacity-30"></div>
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-green-500 via-teal-500 to-blue-600 opacity-30"></div>
       <div className="mx-auto max-w-4xl px-6">
         <motion.div 
           className="text-center mb-12"

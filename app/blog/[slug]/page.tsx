@@ -9,56 +9,57 @@ async function getPostData(slug: string) {
   const posts = [
     {
       slug: 'announcing-aicere-v1',
-      title: 'Announcing Aicere v1.0: The Future of AI-Powered Productivity',
+      title: 'Announcing Aicere Studio v1.0: The Future of AI-Powered Creativity',
       date: 'October 26, 2023',
       author: 'The Aicere Team',
       category: 'Announcements',
       imageUrl: '/screens/hero-code.png',
       content: `
-        <p class="mb-4">We are thrilled to launch Aicere v1.0, a suite of powerful AI tools designed to revolutionize how you code, design, and interact with AI. This release marks a significant milestone in our journey to build the most intuitive and efficient AI-powered productivity software.</p>
+        <p class="mb-4">We are thrilled to launch Aicere Studio v1.0, a comprehensive AI creative suite designed to revolutionize how you work with AI. This release marks a significant milestone in our journey to build the most intuitive and efficient AI-powered creative software.</p>
         <h2 class="text-2xl font-bold my-4 text-white">What's New in v1.0?</h2>
         <ul class="list-disc list-inside mb-4 pl-4 space-y-2">
-          <li><strong>Aigent:</strong> Our flagship node-based AI agent development environment, now with enhanced local model support and a revamped UI.</li>
-          <li><strong>Aimage:</strong> Generate stunning visuals with our ComfyUI-integrated image editor, featuring new models and editing tools.</li>
-          <li><strong>Aibot:</strong> Embeddable AI assistant with improved content grounding and offline capabilities.</li>
+          <li><strong>Agent Mode:</strong> Visual workflow automation with drag-and-drop nodes, AI models, and complex automation capabilities.</li>
+          <li><strong>Image Mode:</strong> AI image generation and professional editing tools with support for multiple AI models like Stable Diffusion and FLUX.</li>
+          <li><strong>Audio Mode:</strong> AI audio generation for music, speech, and sound effects using providers like ElevenLabs and Suno AI.</li>
         </ul>
-        <p class="mb-4">Our team has worked tirelessly to bring you a polished, powerful, and privacy-focused experience. We believe Aicere will become an indispensable part of your workflow.</p>
+        <p class="mb-4">Our team has worked tirelessly to bring you a polished, powerful, and privacy-focused experience. We believe Aicere Studio will become an indispensable part of your creative workflow.</p>
         <h2 class="text-2xl font-bold my-4 text-white">Local-First Philosophy</h2>
-        <p class="mb-4">Aicere is built with a local-first approach, ensuring your data stays on your machine for maximum privacy and control. While cloud features are available for enhanced capabilities, the core functionality of our products is designed to work offline.</p>
-        <p>Explore Aicere v1.0 today and let us know what you think!</p>
+        <p class="mb-4">Aicere Studio is built with a local-first approach, ensuring your data stays on your machine for maximum privacy and control. While cloud features are available for enhanced capabilities, the core functionality works offline.</p>
+        <p>Explore Aicere Studio v1.0 today and let us know what you think!</p>
       `
     },
     // Add other posts here if needed for testing, matching slugs from blog/page.tsx
     {
-      slug: 'mastering-aigent-workflows',
-      title: 'Mastering Aigent: A Guide to Building Powerful AI Agent Workflows',
+      slug: 'mastering-agent-workflows',
+      title: 'Mastering Agent Mode: A Guide to Building Powerful AI Workflows',
       date: 'November 5, 2023',
       author: 'Jane Developer',
       category: 'Tutorials',
       imageUrl: '/screens/aigent-vscode.png',
-      content: `<p>This is a deep dive into Aigent...</p>`
+      content: `<p>This is a deep dive into Agent Mode workflows...</p>`
     },
     {
-      slug: 'creative-ai-with-aimage',
-      title: 'Unleashing Creative Potential with Aimage: Tips and Tricks',
+      slug: 'creative-ai-with-image-mode',
+      title: 'Unleashing Creative Potential with Image Mode: Tips and Tricks',
       date: 'November 12, 2023',
       author: 'Alex Designer',
       category: 'Showcase',
       imageUrl: '/screens/aimage-ui.png',
-      content: '<p>Explore creative Aimage uses here...</p>'
+      content: '<p>Explore creative Image Mode uses here...</p>'
     },
   ];
   return posts.find(post => post.slug === slug);
 }
 
-interface PostPageParams {
-  params: {
+interface PostPageProps {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export default async function BlogPostPage({ params }: PostPageParams) {
-  const post = await getPostData(params.slug);
+export default async function BlogPostPage({ params }: PostPageProps) {
+  const { slug } = await params;
+  const post = await getPostData(slug);
 
   if (!post) {
     return (
@@ -129,8 +130,8 @@ export default async function BlogPostPage({ params }: PostPageParams) {
 // export async function generateStaticParams() {
 //   const posts = [
 //     { slug: 'announcing-aicere-v1' },
-//     { slug: 'mastering-aigent-workflows' },
-//     { slug: 'creative-ai-with-aimage' },
+//     { slug: 'mastering-agent-workflows' },
+//     { slug: 'creative-ai-with-image-mode' },
 //   ];
 //   return posts.map((post) => ({
 //     slug: post.slug,

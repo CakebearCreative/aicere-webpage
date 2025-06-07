@@ -49,14 +49,14 @@ export default function Navbar() {
 
   return (
     <header 
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 backdrop-blur-md ${
-        scrolled || mobileMenuOpen ? 'bg-black/70 shadow-lg' : 'bg-transparent'
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 backdrop-blur-xl ${
+        scrolled || mobileMenuOpen ? 'bg-black/75 shadow-lg' : 'bg-transparent'
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link href="/" className="flex items-center gap-2 z-50" onClick={() => setMobileMenuOpen(false)}>
           {/* <LogoCube /> */}
-          <Image src='/logo.png' alt='Aicere Logo' width={24} height={24} className="h-6 w-6" /> 
+          <Image src='/logo.png' alt='Aicere Logo' width={24} height={24} className="h-10 w-10" /> 
           <span className="font-bold">Aicere</span>
         </Link>
 

@@ -34,7 +34,7 @@ const posts = [
 export default function BlogPage() {
   return (
     <div className="relative min-h-screen pt-32 pb-20">
-      <div className="absolute inset-0 -z-10 bg-gradient-conic from-orange-500 via-amber-500 to-yellow-600 opacity-30"></div>
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-600 opacity-30"></div>
       <div className="mx-auto max-w-5xl px-6">
         <motion.div 
           className="text-center mb-16"

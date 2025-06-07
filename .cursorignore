@@ -1,0 +1,5 @@
+/node_modules/
+/.next/
+.git/
+# DevNotes.txt (Uncomment to ignore)
+# Add other common ignores like *.log, coverage/, .DS_Store if needed

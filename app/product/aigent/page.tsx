@@ -26,7 +26,7 @@ export default function AigentPage() {
   return (
     <div className="relative min-h-screen pt-24 pb-20">
       {/* Background gradient */}
-      <div className="absolute inset-0 -z-10 bg-gradient-conic from-purple-600 via-pink-500 to-green-500 opacity-50"></div>
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-purple-600 via-pink-500 to-green-500 opacity-50"></div>
       
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

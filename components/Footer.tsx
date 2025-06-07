@@ -10,9 +10,10 @@ export default function Footer() {
     { 
       title: 'Products',
       links: [
-        { name: 'Aigent', href: '/product/aigent' },
-        { name: 'Aimage', href: '/product/aimage' },
-        { name: 'Aibot', href: '/product/aibot' },
+        { name: 'Aicere Studio', href: '/features' },
+        { name: 'Agent Mode', href: '/features#agent' },
+        { name: 'Image Mode', href: '/features#image' },
+        { name: 'Audio Mode', href: '/features#audio' },
       ]
     },
     {

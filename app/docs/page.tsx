@@ -1,100 +1,180 @@
 'use client';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { BookOpen, Code, ImageIcon, MessageSquare, ChevronRight } from 'lucide-react';
+import { BookOpen, Code, ImageIcon, Music, Bot, FileText, Video } from 'lucide-react';
 
 export default function DocsPage() {
-  const productDocs = [
+  const docSections = [
     {
-      id: 'aigent',
-      name: 'Aigent Documentation',
-      description: 'Learn how to build, configure, and deploy AI agents with Aigent\'s node-based system.',
-      icon: <Code className="h-8 w-8 text-purple-400" />,
-      href: '/docs/aigent'
+      id: 'getting-started',
+      name: 'Getting Started',
+      description: 'Learn the basics of Aicere Studio, from installation to your first AI workflow.',
+      icon: <BookOpen className="h-6 w-6" />,
+      href: '/docs/getting-started'
     },
     {
-      id: 'aimage',
-      name: 'Aimage Documentation',
-      description: 'Master AI image generation and editing. Explore ComfyUI workflows and advanced features.',
-      icon: <ImageIcon className="h-8 w-8 text-blue-400" />,
-      href: '/docs/aimage' // Placeholder, to be created
+      id: 'agent-mode',
+      name: 'Agent Mode Documentation',
+      description: 'Master visual workflow automation with drag-and-drop nodes, AI models, and complex automation.',
+      icon: <Bot className="h-6 w-6" />,
+      href: '/docs/agent-mode'
     },
     {
-      id: 'aibot',
-      name: 'Aibot Documentation',
-      description: 'Integrate Aibot into your website or use it locally. Train your chatbot and customize its behavior.',
-      icon: <MessageSquare className="h-8 w-8 text-pink-400" />,
-      href: '/docs/aibot' // Placeholder, to be created
+      id: 'image-mode',
+      name: 'Image Mode Documentation',
+      description: 'Generate and edit AI images with professional tools, local models, and cloud providers.',
+      icon: <ImageIcon className="h-6 w-6" />,
+      href: '/docs/image-mode'
+    },
+    {
+      id: 'audio-mode',
+      name: 'Audio Mode Documentation',
+      description: 'Create music, speech, and sound effects using AI models like ElevenLabs and Suno AI.',
+      icon: <Music className="h-6 w-6" />,
+      href: '/docs/audio-mode'
+    },
+    {
+      id: 'model-management',
+      name: 'Model Management',
+      description: 'Install, configure, and manage AI models from CivitAI, HuggingFace, and other sources.',
+      icon: <FileText className="h-6 w-6" />,
+      href: '/docs/model-management'
+    },
+    {
+      id: 'api-reference',
+      name: 'API Reference',
+      description: 'Technical documentation for integrating with Aicere Studio and extending its functionality.',
+      icon: <Code className="h-6 w-6" />,
+      href: '/docs/api'
     }
   ];
 
-  const generalTopics = [
-    { name: 'Installation Guide', href: '/docs/installation' },
-    { name: 'Account & Subscription', href: '/docs/account' },
-    { name: 'API Reference', href: '/docs/api' },
-    { name: 'Troubleshooting', href: '/docs/troubleshooting' },
-  ];
-
   return (
-    <div className="relative min-h-screen pt-32 pb-20">
-      <div className="absolute inset-0 -z-10 bg-gradient-conic from-blue-700 via-sky-600 to-cyan-500 opacity-30"></div>
-      <div className="mx-auto max-w-5xl px-6">
+    <div className="relative min-h-screen pt-24 pb-20">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-600 via-purple-500 to-pink-500 opacity-30"></div>
+      <div className="mx-auto max-w-6xl px-6">
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <BookOpen className="h-16 w-16 mx-auto mb-6 text-cyan-400" />
           <h1 className="text-5xl font-extrabold sm:text-6xl">Documentation</h1>
-          <p className="mt-6 text-xl text-white/80">
-            Find everything you need to know about Aicere products and services.
+          <p className="mt-6 text-xl text-white/80 max-w-2xl mx-auto">
+            Comprehensive guides and references to help you master Aicere Studio's powerful AI capabilities.
           </p>
         </motion.div>
 
-        {/* Product Documentation */}
-        <motion.div 
-          className="mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <h2 className="text-3xl font-bold mb-8 text-center sm:text-left">Product Documentation</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {productDocs.map((doc) => (
-              <Link href={doc.href} key={doc.id} className="block bg-black/30 backdrop-blur-sm rounded-2xl p-6 ring-1 ring-white/10 hover:ring-cyan-500 transition-all group">
-                <div className="flex items-center mb-3">
-                  {doc.icon}
-                  <h3 className="ml-3 text-xl font-semibold">{doc.name}</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {docSections.map((section, index) => (
+            <motion.div
+              key={section.id}
+              className="bg-black/30 backdrop-blur-sm rounded-2xl p-6 ring-1 ring-white/10 hover:ring-white/20 transition-all group"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-white/10 rounded-lg group-hover:bg-white/20 transition-colors">
+                  {section.icon}
                 </div>
-                <p className="text-white/70 text-sm mb-4">{doc.description}</p>
-                <span className="text-sm font-medium text-cyan-400 group-hover:underline flex items-center">
-                  View Docs <ChevronRight className="h-4 w-4 ml-1" />
-                </span>
+                <h3 className="text-xl font-semibold">{section.name}</h3>
+              </div>
+              <p className="text-white/70 mb-6">{section.description}</p>
+              <Link 
+                href={section.href}
+                className="inline-flex items-center text-purple-400 hover:text-purple-300 font-medium"
+              >
+                Read Documentation →
               </Link>
-            ))}
-          </div>
-        </motion.div>
+            </motion.div>
+          ))}
+        </div>
 
-        {/* General Topics */}
+        {/* Quick Links */}
         <motion.div
+          className="mt-20"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <h2 className="text-3xl font-bold mb-8 text-center sm:text-left">General Topics</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {generalTopics.map((topic) => (
-              <Link href={topic.href} key={topic.name} className="block bg-black/30 backdrop-blur-sm rounded-2xl p-6 ring-1 ring-white/10 hover:ring-cyan-500 transition-all group">
-                <h3 className="text-xl font-semibold mb-2">{topic.name}</h3>
-                <span className="text-sm font-medium text-cyan-400 group-hover:underline flex items-center">
-                  Read More <ChevronRight className="h-4 w-4 ml-1" />
-                </span>
-              </Link>
-            ))}
+          <h2 className="text-3xl font-bold text-center mb-12">Quick Links</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-black/20 backdrop-blur-sm rounded-2xl p-6">
+              <h3 className="text-xl font-semibold mb-4">Popular Guides</h3>
+              <ul className="space-y-3">
+                <li>
+                  <Link href="/docs/getting-started/installation" className="text-purple-400 hover:text-purple-300">
+                    Installation Guide
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/docs/agent-mode/first-workflow" className="text-purple-400 hover:text-purple-300">
+                    Creating Your First Workflow
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/docs/image-mode/ai-generation" className="text-purple-400 hover:text-purple-300">
+                    AI Image Generation Basics
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/docs/audio-mode/text-to-speech" className="text-purple-400 hover:text-purple-300">
+                    Text-to-Speech Setup
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            
+            <div className="bg-black/20 backdrop-blur-sm rounded-2xl p-6">
+              <h3 className="text-xl font-semibold mb-4">Advanced Topics</h3>
+              <ul className="space-y-3">
+                <li>
+                  <Link href="/docs/model-management/local-models" className="text-purple-400 hover:text-purple-300">
+                    Setting Up Local AI Models
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/docs/agent-mode/advanced-nodes" className="text-purple-400 hover:text-purple-300">
+                    Advanced Node Types
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/docs/image-mode/professional-editing" className="text-purple-400 hover:text-purple-300">
+                    Professional Image Editing
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/docs/api/workflow-automation" className="text-purple-400 hover:text-purple-300">
+                    Workflow Automation API
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </motion.div>
 
+        {/* Community Support */}
+        <motion.div
+          className="mt-16 text-center bg-black/20 backdrop-blur-sm rounded-2xl p-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.0 }}
+        >
+          <h3 className="text-2xl font-bold mb-4">Need Help?</h3>
+          <p className="text-white/70 mb-6">
+            Can't find what you're looking for? Our community and support team are here to help.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/forum" className="btn-primary">
+              Visit Community Forum
+            </Link>
+            <Link href="/contact" className="btn-ghost">
+              Contact Support
+            </Link>
+          </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -28,6 +28,22 @@ module.exports = {
       borderRadius: {
         '3xl': '1.5rem',
       },
+      // custom shine animation for button border highlight
+      keyframes: {
+        shine: {
+          '0%': { transform: 'translateX(-50%) skewX(-70deg)' },
+          '100%': { transform: 'translateX(550%) skewX(-83deg)' },
+        },
+        dash: {
+          '0%': { strokeDashoffset: '0' },
+          '100%': { strokeDashoffset: '-280' },
+        },
+      },
+      animation: {
+        // triggers on hover: plays once, remove 'infinite' to play only on hover trigger
+        shine: 'shine 2s ease-in-out infinite',
+        dash: 'dash 1.5s linear infinite',
+      },
     },
   },
   plugins: [
